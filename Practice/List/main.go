@@ -242,10 +242,10 @@ func (l *link) del(n *node) {
 
 /* 9.合并两个有序的链表 */
 
-/* 10.链表复制 */
+/* 10.复杂链表复制 */
 
 /* 11.链表反转 */
-//四种方法:http://c.biancheng.net/view/8105.html
+//一.头插法
 func (l *link) reverse() *link {
 	//创建新链表,头插法 将旧链表的节点迁入
 	newList := &link{head: &node{value: "head node", next: nil}, length: 0}
@@ -262,6 +262,10 @@ func (l *link) reverse() *link {
 
 	return newList
 }
+
+/* 12.手写链表交换2个节点 */
+//四种方法:http://c.biancheng.net/view/8105.html
+
 func main() {
 	//创建一个链表,用于测试
 	l := GetLinkedList().add(10)
@@ -296,4 +300,8 @@ func main() {
 	l.rangeList()
 	fmt.Println("链表长度:", l.getLen())
 
+
+
+
+	
 }

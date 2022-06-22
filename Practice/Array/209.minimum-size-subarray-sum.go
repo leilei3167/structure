@@ -1,6 +1,8 @@
 package main
 
-import "math"
+import (
+	"math"
+)
 
 //https://leetcode.cn/problems/minimum-size-subarray-sum/
 /*
@@ -49,4 +51,32 @@ func minSubArrayLen(target int, nums []int) int {
 	} else {
 		return result
 	}
+}
+
+func minSubArrayLen2(target int, nums []int) int {
+	//经典滑动窗口
+	//移动结束位置,当左边界和右边界元素和大于等于target时,说明应该移动左边界以缩小窗口
+	left := 0
+	result := len(nums) + 10000
+	sum := 0
+	for i := 0; i < len(nums); i++ {
+		//元素和
+		sum = sum + nums[i]
+		for sum >= target {
+			//左边界应该右移动缩小窗口,此时的子数组长度:
+			subLen := i - left + 1
+			if subLen < result {
+				result = subLen
+			}
+			//排除上一个left的值
+			sum = sum - nums[left]
+			left++
+		}
+	}
+	if result == len(nums)+10000 {
+		return 0
+	} else {
+		return result
+	}
+
 }
